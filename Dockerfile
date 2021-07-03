@@ -7,7 +7,7 @@ ENV RUNNER_WORKDIR "_work"
 ENV RUNNER_LABELS ""
 
 ENV DOCKER_BUCKET get.docker.com
-ENV DOCKER_VERSION 19.03.6
+ENV DOCKER_VERSION 20.10.7
 
 ENV DOTNET_SDK_VERSION=5.0
 
@@ -65,7 +65,7 @@ RUN ./dotnet-install.sh -c ${DOTNET_SDK_VERSION} -InstallDir /usr/share/dotnet/ 
 USER github
 WORKDIR /home/github
 
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --default-toolchain=nightly
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --default-toolchain=stable
 ENV PATH="$HOME/.cargo/bin:${PATH}"
 RUN $HOME/.cargo/bin/cargo install sccache
 ADD ./config /home/github/.cargo/config
